@@ -3,317 +3,404 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>THE ARCHITECTURE OF POWER // TERMINAL</title>
+    <title>THE ARCHITECTURE OF POWER // GLOBAL ATLAS</title>
     <style>
-        /* ELITE COMMAND CENTER MINIMALIST STYLES */
+        /* ELITE COMMAND CENTER CORE DESIGN */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Courier New', Courier, monospace;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
         }
 
         body {
-            background-color: #060709;
-            color: #cbd5e1;
+            background-color: #0b0d10;
+            color: #94a3b8;
             overflow-x: hidden;
-            perspective: 1200px;
         }
 
-        /* LIVE TRANSFORMING BACKGROUND TACTICAL GRID */
-        .tactical-grid {
+        /* PREMIUM FLOATING NAVIGATION HUD */
+        .top-hud-nav {
             position: fixed;
-            top: -30%;
-            left: -30%;
-            width: 160%;
-            height: 160%;
-            z-index: 1;
-            opacity: 0.08;
-            background-image: 
-                linear-gradient(to right, #FF5722 1px, transparent 1px),
-                linear-gradient(to bottom, #FF5722 1px, transparent 1px);
-            background-size: 60px 60px;
-            transform: rotateX(25deg) rotateZ(-5deg);
-            pointer-events: none;
-            transition: transform 0.1s ease-out;
-            will-change: transform;
-        }
-
-        /* GLITCHING COMMAND HEADER */
-        header {
-            position: relative;
-            z-index: 10;
-            max-width: 1100px;
-            margin: 50px auto 20px auto;
-            padding: 25px;
-            border-bottom: 1px dashed rgba(255, 87, 34, 0.3);
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 70px;
+            background: rgba(11, 13, 16, 0.85);
+            border-bottom: 1px solid rgba(255, 106, 61, 0.15);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            z-index: 1000;
             display: flex;
             justify-content: space-between;
-            align-items: flex-end;
+            align-items: center;
+            padding: 0 40px;
         }
 
-        .system-status {
-            color: #FF5722;
-            font-size: 11px;
-            letter-spacing: 4px;
-            font-weight: bold;
+        .logo-mark {
+            color: #ffffff;
+            font-weight: 800;
+            letter-spacing: 2px;
+            font-size: 14px;
             display: flex;
             align-items: center;
+            gap: 10px;
+        }
+
+        .active-pulse-dot {
+            width: 8px;
+            height: 8px;
+            background: #ff6a3d;
+            border-radius: 50%;
+            box-shadow: 0 0 12px #ff6a3d;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-tab {
+            font-size: 12px;
+            color: #475569;
+            text-decoration: none;
+            font-weight: 700;
+            letter-spacing: 1px;
+            transition: color 0.3s ease;
+        }
+
+        .nav-tab.active {
+            color: #ff6a3d;
+        }
+
+        /* HERO MATRIX BRIEFING */
+        .hero-briefing {
+            max-width: 1200px;
+            margin: 140px auto 60px auto;
+            padding: 0 40px;
+        }
+
+        .intel-tag {
+            color: #ff6a3d;
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 3px;
+            margin-bottom: 10px;
+        }
+
+        .hero-title {
+            color: #ffffff;
+            font-size: 48px;
+            font-weight: 800;
+            letter-spacing: -1px;
+            line-height: 1.1;
+            margin-bottom: 20px;
+        }
+
+        /* THE CHRONO TIMELINE BLOCK SYSTEM */
+        .era-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px 100px auto;
+            display: flex;
+            flex-direction: column;
+            gap: 80px;
+        }
+
+        .era-card {
+            background: #111419;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            border-radius: 12px;
+            padding: 50px;
+            position: relative;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.4);
+            transition: border-color 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .era-card:hover {
+            border-color: rgba(255, 106, 61, 0.25);
+            box-shadow: 0 30px 60px rgba(255, 106, 61, 0.02);
+        }
+
+        .era-num {
+            font-size: 14px;
+            color: #ff6a3d;
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+
+        .era-header-title {
+            color: #ffffff;
+            font-size: 32px;
+            font-weight: 800;
+            margin-bottom: 15px;
+        }
+
+        .era-desc {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #64748b;
+            max-width: 800px;
+            margin-bottom: 40px;
+        }
+
+        /* INTERACTIVE EXPANDABLE ACTOR MATRIX */
+        .actors-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .actor-row {
+            background: rgba(255, 255, 255, 0.01);
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .actor-trigger {
+            padding: 24px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .actor-title-group {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .actor-name {
+            color: #ffffff;
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .actor-pill {
+            background: rgba(255, 255, 255, 0.05);
+            color: #94a3b8;
+            font-size: 11px;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+
+        .arrow-icon {
+            color: #475569;
+            font-weight: bold;
+            transition: transform 0.3s ease;
+        }
+
+        /* EXPANDABLE DATA COMPARTMENT */
+        .actor-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+            background: rgba(0, 0, 0, 0.15);
+        }
+
+        .content-inner {
+            padding: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.02);
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+        }
+
+        @media (min-width: 768px) {
+            .content-inner { grid-template-columns: 1fr 1fr; }
+        }
+
+        .data-block {
+            display: flex;
+            flex-direction: column;
             gap: 8px;
         }
 
-        .live-dot {
-            width: 7px;
-            height: 7px;
-            background-color: #FF5722;
-            border-radius: 50%;
-            animation: pulse 1.5s infinite;
-        }
-
-        /* MAIN HUD CONTAINER */
-        main {
-            position: relative;
-            z-index: 10;
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            gap: 45px;
-            padding-bottom: 100px;
-        }
-
-        /* ADVANCED GLASSMORPHISM HUD CARDS */
-        .era-section {
-            background: rgba(11, 14, 19, 0.65);
-            border: 1px solid rgba(255, 255, 255, 0.04);
-            border-left: 3px solid #334155;
-            border-radius: 6px;
-            padding: 35px;
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
-        }
-
-        /* ACTIVE SECTOR VIEWPORT ACCENT */
-        .era-section.active-focus {
-            border-color: rgba(255, 87, 34, 0.35);
-            border-left: 3px solid #FF5722;
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5), 0 0 30px rgba(255, 87, 34, 0.03);
-            transform: scale(1.01) translateZ(10px);
-        }
-
-        .era-title {
-            color: #ffffff;
-            font-size: 24px;
-            font-weight: 800;
-            letter-spacing: 3px;
-            margin-top: 5px;
-            margin-bottom: 12px;
-        }
-
-        .timeline-badge {
-            display: inline-block;
+        .block-label {
             font-size: 11px;
-            background: rgba(255, 87, 34, 0.08);
-            color: #FF5722;
-            padding: 4px 12px;
-            border-radius: 3px;
-            border: 1px solid rgba(255, 87, 34, 0.18);
-            letter-spacing: 1px;
+            color: #ff6a3d;
+            font-weight: 700;
+            letter-spacing: 1.5px;
         }
 
-        .power-grid {
-            display: grid;
-            grid-template-cols: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 25px;
-            margin-top: 30px;
-        }
-
-        .power-card {
-            background: rgba(255, 255, 255, 0.015);
-            border: 1px solid rgba(255, 255, 255, 0.04);
-            padding: 22px;
-            border-radius: 4px;
-            position: relative;
-        }
-
-        .power-name {
-            color: #00E5FF;
-            font-size: 15px;
-            font-weight: bold;
-            letter-spacing: 2px;
-            margin-bottom: 12px;
-            border-bottom: 1px solid rgba(0, 229, 255, 0.15);
-            padding-bottom: 6px;
-            display: flex;
-            justify-content: space-between;
-        }
-
-        .share-tag {
-            font-size: 10px;
-            color: #64748b;
-        }
-
-        .strategy-text {
-            font-family: sans-serif;
-            font-size: 13px;
-            color: #94a3b8;
-            line-height: 1.6;
-        }
-
-        /* HIGH-FRONTIER CYBER MATRIX BOX */
-        .astropolitics-box {
-            margin-top: 18px;
-            background: rgba(0, 229, 255, 0.04);
-            border: 1px dashed rgba(0, 229, 255, 0.25);
-            padding: 12px;
-            font-size: 11px;
-            color: #00E5FF;
+        .block-text {
+            font-size: 14px;
+            color: #cbd5e1;
             line-height: 1.5;
-            border-radius: 3px;
         }
 
-        @keyframes pulse {
-            0% { opacity: 0.3; }
-            50% { opacity: 1; }
-            100% { opacity: 0.3; }
+        /* OPEN STATE UTILITIES */
+        .actor-row.expanded {
+            border-color: rgba(255, 255, 255, 0.08);
+            background: rgba(255, 255, 255, 0.02);
+        }
+        .actor-row.expanded .arrow-icon {
+            transform: rotate(180deg);
+            color: #ff6a3d;
         }
     </style>
 </head>
 <body>
 
-    <div class="tactical-grid" id="bgGrid"></div>
-
-    <header>
-        <div>
-            <div class="system-status"><span class="live-dot"></span> LIVE // CONSOLE_STREAM_2026</div>
-            <h1 style="color: white; font-size: 26px; margin-top: 6px; letter-spacing: -0.5px;">The Architecture of Power</h1>
+    <nav class="top-hud-nav">
+        <div class="logo-mark">
+            <div class="active-pulse-dot"></div>
+            GEOPOLITICAL ATLAS // ARCHITECTURE OF POWER
         </div>
-        <div style="font-size: 11px; color: #475569; text-align: right; font-weight: bold;">
-            DOMAIN: MULTI-LEVEL ATLAS
+        <div class="nav-links">
+            <a href="#" class="nav-tab active">ATLAS</a>
+            <a href="#" class="nav-tab">PATTERNS</a>
+            <a href="#" class="nav-tab">DATA ROOM</a>
         </div>
-    </header>
+    </nav>
 
-    <main>
-        <div class="era-section active-focus">
-            <div class="timeline-badge">NODE_01 // 1500 – 1700</div>
-            <div class="era-title">AGE OF EXPLORATION</div>
-            <p style="font-size: 14px; color: #64748b; line-height: 1.5;">European crowns project power across maritime channels, shifting traditional continental wealth directly into high-seas mercantilist empires.</p>
+    <section class="hero-briefing">
+        <div class="intel-tag">SYSTEM BRIEFING // INTERACTIVE STREAM</div>
+        <h1 class="hero-title">The Architecture<br>of Global Power</h1>
+        <p style="font-size: 18px; color: #64748b; max-width: 700px; line-height: 1.5;">A scroll-driven interactive matrix mapping five centuries of global empire configuration, strategic choice, and systemic transformation.</p>
+    </section>
+
+    <main class="era-container">
+
+        <div class="era-card">
+            <div class="era-num">01 // 1500 — 1700</div>
+            <div class="era-header-title">AGE OF EXPLORATION</div>
+            <div class="era-desc">European crowns race across ocean channels. Global trade nodes shift decisively from Mediterranean land routes directly onto high-seas trans-Atlantic networks.</div>
             
-            <div class="power-grid">
-                <div class="power-card">
-                    <div class="power-name">SPAIN <span class="share-tag">GDP SHARE: 14%</span></div>
-                    <p class="strategy-text">Extract New World bullion reserves, enforce strict Catholic sea-lane control, and dominate European infantry theaters with traditional armored formations.</p>
-                </div>
-                <div class="power-card">
-                    <div class="power-name">ENGLAND <span class="share-tag">GDP SHARE: 8%</span></div>
-                    <p class="strategy-text">Break maritime cartels via state-sanctioned privateering, utilizing a highly defensive island geography to scale up agile joint-stock merchant wealth.</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="era-section">
-            <div class="timeline-badge">NODE_02 // 1700 – 1914</div>
-            <div class="era-title">EMPIRES & INDUSTRY</div>
-            <p style="font-size: 14px; color: #64748b; line-height: 1.5;">Industrial mobilization mechanics convert heavy coal and manufacturing metrics directly into dominant global reach.</p>
-            
-            <div class="power-grid">
-                <div class="power-card">
-                    <div class="power-name">UNITED KINGDOM <span class="share-tag">GDP SHARE: 33%</span></div>
-                    <p class="strategy-text">Enforce a strict blue-water double-naval standard to isolate European land rivals while scaling up global maritime trade networks and fuel coaling stations.</p>
-                </div>
-                <div class="power-card">
-                    <div class="power-name">GERMANY <span class="share-tag">GDP SHARE: 16%</span></div>
-                    <p class="strategy-text">Consolidate central continental industrial steel reserves while aggressively constructing rapid Prussian General Staff rail systems to counter multi-front exposure.</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="era-section">
-            <div class="timeline-badge">NODE_03 // 1914 – 1945</div>
-            <div class="era-title">WORLD WARS</div>
-            <p style="font-size: 14px; color: #64748b; line-height: 1.5;">Total war optimization loops transform domestic civilian workforces into heavy logistical manufacturing plants.</p>
-            
-            <div class="power-grid">
-                <div class="power-card">
-                    <div class="power-name">UNITED STATES <span class="share-tag">GDP SHARE: 41%</span></div>
-                    <p class="strategy-text">Deploy massive insulating oceans to shield production plants while mass-manufacturing heavy carrier fleets, strategic air assets, and nuclear project layouts.</p>
-                </div>
-                <div class="power-card">
-                    <div class="power-name">SOVIET UNION <span class="share-tag">GDP SHARE: 12%</span></div>
-                    <p class="strategy-text">Absorb deep industrial territory attacks by executing mass factory relocations eastward, backed by centralized control commands and deep defensive land strategies.</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="era-section">
-            <div class="timeline-badge">NODE_04 // 1945 – 1991</div>
-            <div class="era-title">COLD WAR INTERFACE</div>
-            <p style="font-size: 14px; color: #64748b; line-height: 1.5;">Bipolar containment fields restrict direct combat, forcing strategic friction into proxy wars and nuclear deterrence grids.</p>
-            
-            <div class="power-grid">
-                <div class="power-card">
-                    <div class="power-name">UNITED STATES <span class="share-tag">GDP SHARE: 27%</span></div>
-                    <p class="strategy-text">Erect structural alliance barriers like NATO to contain Eurasian land consolidation, backed by currency mechanics and forward nuclear triad placements.</p>
-                </div>
-                <div class="power-card">
-                    <div class="power-name">CHINA (PRC) <span class="share-tag">GDP SHARE: 5%</span></div>
-                    <p class="strategy-text">Leverage deep internal demographic buffers to secure territorial sovereignty, steadily shifting from basic agrarian planning to calculated global trade access layers.</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="era-section">
-            <div class="timeline-badge">NODE_05 // 2026 ACTIVE EDGE</div>
-            <div class="era-title">MULTIPOLARITY & ASTROPOLITICS</div>
-            <p style="font-size: 14px; color: #64748b; line-height: 1.5;">Terrestrial choke points collide with an elite orbital race for distributed low-Earth satellite resilience and cislunar asset routing fields.</p>
-            
-            <div class="power-grid">
-                <div class="power-card">
-                    <div class="power-name">UNITED STATES (USSF NETWORKS) <span class="share-tag">GDP SHARE: 24%</span></div>
-                    <p class="strategy-text">Secure deep-space logistics corridors via the Artemis Accords network while shifting fragile military satellite hardware into dense, fast-replacing LEO configurations.</p>
-                    <div class="astropolitics-box">
-                        // HIGH-FRONTIER ASSET MATRIX:<br>
-                        LAUNCH CADENCE: 120/YR | BLOC: ARTEMIS FRAMEWORK<br>
-                        FOCUS: CISLUNAR DEEP SPACE TRACKING
+            <div class="actors-grid">
+                <div class="actor-row">
+                    <div class="actor-trigger" onclick="toggleActor(this)">
+                        <div class="actor-title-group">
+                            <span class="actor-name">SPAIN</span>
+                            <span class="actor-pill">BULLION EXTRACTION MODEL</span>
+                        </div>
+                        <span class="arrow-icon">▼</span>
+                    </div>
+                    <div class="actor-content">
+                        <div class="content-inner">
+                            <div class="data-block">
+                                <span class="block-label">STRATEGIC OBJECTIVES</span>
+                                <p class="block-text">Secure absolute colonial metal reserves across the Americas, enforce Catholic evangelization networks, and lock down trans-Atlantic trade flows.</p>
+                            </div>
+                            <div class="data-block">
+                                <span class="block-label">GEOGRAPHIC PROFILE</span>
+                                <p class="block-text">Direct early launching platforms facing the Atlantic Ocean, paired with massive, fragile colonial lines exposed to hostile interceptors.</p>
+                            </div>
+                            <div class="data-block">
+                                <span class="block-label">CRISIS RESPONSE & RECONSTRUCT</span>
+                                <p class="block-text">Failed to cultivate native manufacturing assets, choosing instead to import raw bullion directly. Led to systemic currency inflation and structural stagnation.</p>
+                            </div>
+                            <div class="data-block">
+                                <span class="block-label">ADAPTATION PATTERN</span>
+                                <p class="block-text">Gradual decline through administrative inertia. Retained overseas territories through raw territorial depth rather than modern economic innovation.</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="power-card">
-                    <div class="power-name">CHINA (ILRS COALITION) <span class="share-tag">GDP SHARE: 18%</span></div>
-                    <p class="strategy-text">Deploy sovereign mega-constellations to control electronic encryption streams while securing heavy industrial launch infrastructure targets at the Lunar South Pole.</p>
-                    <div class="astropolitics-box">
-                        // HIGH-FRONTIER ASSET MATRIX:<br>
-                        LAUNCH CADENCE: 90/YR | BLOC: ILRS COALITION<br>
-                        FOCUS: LUNAR SOUTH POLE DEPLOYMENTS
+
+                <div class="actor-row">
+                    <div class="actor-trigger" onclick="toggleActor(this)">
+                        <div class="actor-title-group">
+                            <span class="actor-name">ENGLAND</span>
+                            <span class="actor-pill">MERCANTILE MARITIME FLOW</span>
+                        </div>
+                        <span class="arrow-icon">▼</span>
+                    </div>
+                    <div class="actor-content">
+                        <div class="content-inner">
+                            <div class="data-block">
+                                <span class="block-label">STRATEGIC OBJECTIVES</span>
+                                <p class="block-text">Break Spanish trade cartels via tactical privateering networks, while systematically anchoring merchant-capital settlements in North America.</p>
+                            </div>
+                            <div class="data-block">
+                                <span class="block-label">GEOGRAPHIC PROFILE</span>
+                                <p class="block-text">Island configuration provides a natural defensive barrier against continental land deployments, eliminating the overhead cost of massive standing infantries.</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+
+        <div class="era-card">
+            <div class="era-num">05 // 1991 — PRESENT</div>
+            <div class="era-header-title">MULTIPOLARITY & ASTROPOLITICS</div>
+            <div class="era-desc">Terrestrial strategic choke points collide with an elite computational race to lock down low-Earth orbit satellite resilience layers and cislunar deep-space infrastructure.</div>
+            
+            <div class="actors-grid">
+                <div class="actor-row">
+                    <div class="actor-trigger" onclick="toggleActor(this)">
+                        <div class="actor-title-group">
+                            <span class="actor-name">UNITED STATES</span>
+                            <span class="actor-pill">USSF HIGH-FRONTIER FRAMEWORK</span>
+                        </div>
+                        <span class="arrow-icon">▼</span>
+                    </div>
+                    <div class="actor-content">
+                        <div class="content-inner">
+                            <div class="data-block">
+                                <span class="block-label">STRATEGIC OBJECTIVES</span>
+                                <p class="block-text">Preserve open deep-space logistics lines via the Artemis Accords while migrating vulnerable orbital payloads into fast-replacing LEO distributed arrays.</p>
+                            </div>
+                            <div class="data-block">
+                                <span class="block-label">ECONOMIC FORCE MECHANICS</span>
+                                <p class="block-text">Financialized commercial technology ecosystems paired with deep venture-backed aerospace innovation clusters.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="actor-row">
+                    <div class="actor-trigger" onclick="toggleActor(this)">
+                        <div class="actor-title-group">
+                            <span class="actor-name">CHINA</span>
+                            <span class="actor-pill">ILRS COALITION BLOC</span>
+                        </div>
+                        <span class="arrow-icon">▼</span>
+                    </div>
+                    <div class="actor-content">
+                        <div class="content-inner">
+                            <div class="data-block">
+                                <span class="block-label">STRATEGIC OBJECTIVES</span>
+                                <p class="block-text">Establish sovereign technological supply networks, deploy independent orbital configurations, and clear permanent deep-space stations at the Lunar South Pole.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </main>
 
     <script>
-        // ZERO-DRAMA VIEWPORT ENGINE
-        // Warps the design layout smoothly relative to your finger scroll speed
-        const grid = document.getElementById('bgGrid');
-        
-        window.addEventListener('scroll', () => {
-            const scrolled = window.scrollY;
+        // ELITE ACCORDION ENGINE
+        // Manages individual card expansions without lag or page reloads
+        function toggleActor(triggerElement) {
+            const row = triggerElement.parentElement;
+            const content = row.querySelector('.actor-content');
             
-            // Grid transformations
-            grid.style.transform = `rotateX(25deg) rotateZ(-5deg) translateY(${scrolled * 0.18}px) scale(${1 + scrolled * 0.0003})`;
-            
-            // Dynamic node focusing activation
-            const sections = document.querySelectorAll('.era-section');
-            sections.forEach(sec => {
-                const position = sec.getBoundingClientRect().top;
-                if(position < window.innerHeight * 0.65 && position > -250) {
-                    sec.classList.add('active-focus');
-                } else {
-                    sec.classList.remove('active-focus');
-                }
-            });
-        });
+            if (row.classList.contains('expanded')) {
+                content.style.maxHeight = null;
+                row.classList.remove('expanded');
+            } else {
+                // Close other opened rows in the same grid for clean HUD aesthetics
+                const siblingRows = row.parentElement.querySelectorAll('.actor-row');
+                siblingRows.forEach(sibling => {
+                    if (sibling !== row) {
+                        sibling.classList.remove('expanded');
+                        sibling.querySelector('.actor-content').style.maxHeight = null;
+                    }
+                });
+
+                row.classList.add('expanded');
+                content.style.maxHeight = content.scrollHeight + "px";
+            }
+        }
     </script>
 </body>
 </html>
